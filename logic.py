@@ -73,7 +73,17 @@ class Logic:
             else:
                 self.grid[:, i] = new_grid
 
-    def play(self):
+    def play(self, cmd):
+
+        old_grid = self.grid.copy()
+        self.make_move(move=cmd)
+
+        if all((self.grid == old_grid).flatten()):
+            return
+
+        self.generate_num(k=1)
+
+    def play_console(self):
 
         self.generate_num(k=2)
 
@@ -97,5 +107,4 @@ class Logic:
 
 if __name__ == "__main__":
     game = Logic()
-    game.play()
-    print(game)
+    game.play_console()
